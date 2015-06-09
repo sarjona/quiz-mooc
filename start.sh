@@ -1,1 +1,3 @@
-DEBUG=quiz-mooc ./bin/www
+#DEBUG=quiz-mooc ./bin/www
+
+npm start
