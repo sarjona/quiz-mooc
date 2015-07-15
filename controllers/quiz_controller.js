@@ -94,3 +94,10 @@ exports.update = function(req, res){
 		.then(function(){res.redirect('/quizes');});  // Redirección HTTP a lista de pregunta (URL relativo)
   }
 };
+
+// DELETE /quizes/:id
+exports.destroy = function(req, res){
+	req.quiz.destroy()
+	.then( function() { res.redirect('/quizes');})
+	.catch(function (error) {next(error)});
+};
