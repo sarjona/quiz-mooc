@@ -51,7 +51,6 @@ sequelize.sync().then(function(){
 						  respuesta: 'Lisboa',
 						  tema: 'humanidades'
 						})
-			.then(function(){console.log('Base de datos inicializada')});
 			Quiz.create({ pregunta: 'Suma 1+1',
 						  respuesta: '2',
 						  tema: 'ciencia'
