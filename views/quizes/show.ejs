@@ -13,5 +13,14 @@
 	<input type="text" name="respuesta" value="Responda aquí" />
 	<input type="submit" value="Enviar" />
 </form>
+
+<p><br/><a href="/quizes/<%=quiz.id%>/comments/new"><button>Nuevo comentario</button></a><br/></p>
+
+<%if (quiz.comments.length > 0 ) {%>
+	<p><br/><strong>Comentarios:</strong></p>
+	<%for(index in quiz.comments) { %>
+		<p>-<%=quiz.comments[index].texto%></p>
+	<%}%>
+<%}%>
 </body>
 </html>
