@@ -28,6 +28,27 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// MW para cerrar sesión inactiva durante 2 minutos
+app.use(function(req, res, next) {
+    var user = req.session.user;
+    var waitTime = 120000; // 120000 = 2 min
+    if (user) { // La sesión existe
+        if (!req.session.time) {
+            req.session.time = (new Date()).getTime();
+        } else {
+           var timeNow = new Date().getTime();
+            if (timeNow - req.session.time > waitTime) {
+                delete req.session.user;
+                delete req.session.time;
+            } else {
+                req.session.time =(new Date()).getTime();
+            }
+        }
+    }
+    next();
+});
+
+
 // Helpers dinamicos
 app.use(function(req, res, next) {
     // guardar path en session.redir para despues de login
